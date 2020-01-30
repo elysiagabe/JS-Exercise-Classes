@@ -184,13 +184,11 @@ class Student extends Lambdasian {
   sprintChallenge(subject) {
     return `${this.name} has begun a sprint challenge on ${subject}`;
   }
-  graduate() { //stretch -- not sure if this is the intended answer but it should work as the instructions outlined...if student gets above a 70, they can graduate...otherwise, they're graded again and again until they reach a grade of over 70, at which point they can graduate...
+  graduate(Instructor) { //stretch 
     if (this.grade > 70) {
-      console.log(this.grade);
       return `Congrats, ${this.name}, you're ready to graduate`;
     } else {
-      console.log(this.grade += Math.floor(Math.random() * ((100 - this.grade) - (1 - this.grade) + 1) + (1 - this.grade)));
-      return this.graduate();
+      return Instructor.gradingStudent(this.grade);
     }
   }
 }
