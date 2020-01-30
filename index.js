@@ -146,6 +146,10 @@ class Instructor extends Lambdasian {
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`;
   }
+  gradingStudent(grade) {
+    return grade += Math.floor(Math.random() * ((100 - grade) - (1 - grade) + 1) + (1 - grade));
+    //Stretch -- add or subtract a random amount to adjust a student's grade; student's adjusted grade should still be between 1 & 100
+  }
 }
 
 /*
@@ -168,7 +172,8 @@ class Student extends Lambdasian {
     super(studentAttrs);
     this.previousBackground = studentAttrs.previousBackground,
     this.className = studentAttrs.className,
-    this.favSubjects = studentAttrs.favSubjects
+    this.favSubjects = studentAttrs.favSubjects,
+    this.grade = Math.floor(Math.random() * 100) + 1;; //stretch - will set student grade to random # b/t 1 & 100
   }
   listSubjects() {
     return `Loving ${this.favSubjects}!`;
@@ -178,6 +183,15 @@ class Student extends Lambdasian {
   }
   sprintChallenge(subject) {
     return `${this.name} has begun a sprint challenge on ${subject}`;
+  }
+  graduate() { //stretch -- not sure if this is the intended answer but it should work as the instructions outlined...if student gets above a 70, they can graduate...otherwise, they're graded again and again until they reach a grade of over 70, at which point they can graduate...
+    if (this.grade > 70) {
+      console.log(this.grade);
+      return `Congrats, ${this.name}, you're ready to graduate`;
+    } else {
+      console.log(this.grade += Math.floor(Math.random() * ((100 - this.grade) - (1 - this.grade) + 1) + (1 - this.grade)));
+      return this.graduate();
+    }
   }
 }
 
